@@ -25,7 +25,7 @@ const CreateCategoryForm = () => {
                         <input type="text" placeholder='Restaurant Name'value={restaurantName} onChange={(e)=>{setRestaurantName(e.target.value)}} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
                     </div>       
                     <div className='flex flex-col mt-5'>
-                        <button type='submit' className='bg-black text-center w-full h-10 text-white'>Publish</button>
+                        <button type='submit' className='bg-black text-center w-full h-10 text-white'>Create</button>
                     </div>
                 </form>
             </div>
