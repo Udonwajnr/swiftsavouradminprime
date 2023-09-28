@@ -1,23 +1,45 @@
 import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
+const CreateRestaurantForm = ({restaurantEditData}) => {
+    const [name,setName] = useState(restaurantEditData?.name|| "")
+    const [address,setAddress] = useState(restaurantEditData?.name||"")
+    const [logo,setLogo] = useState(restaurantEditData?.logo||"")
+    const [image,setImage] = useState(restaurantEditData?.image||"")
+    const [latitude,setLatitude] = useState(restaurantEditData?.latitude||"")
+    const [longitude,setLongitude] = useState( restaurantEditData?.longitude || "")
+    const [rating,setRating] = useState(restaurantEditData?.rating||"")
+    const [phoneNumber,setPhoneNumber] = useState(restaurantEditData?.phoneNumber||"")
+    const [deliveryTime,setDeliveryTime] = useState(restaurantEditData?.deliveryTime || "")
+    const [success,setSuccess] = useState(false)
+    // console.log()
 
-const CreateRestaurantForm = () => {
-    const [name,setName] = useState("")
-    const [address,setAddress] = useState("")
-    const [logo,setLogo] = useState("")
-    const [image,setImage] = useState("")
-    const [latitude,setLatitude] = useState("")
-    const [longitude,setLongitude] = useState("")
-    const [rating,setRating] = useState("")
-    const [phoneNumber,setPhoneNumber] = useState("")
-    const [deliveryTime,setDeliveryTime] = useState("")
-
-    const data={name,address,logo,image,latitude,longitude,rating,phoneNumber,deliveryTime}
-    console.log(data)
-    const createRestaurant =(e)=>{
+    const router = useRouter()
+    const createRestaurant =async(e)=>{
         e.preventDefault()
-        axios.post("http://localhost:5000/api/restaurant/",data).then((data)=>console.log("submitted successfully"))
+        const data={name,address,logo,image,latitude,longitude,rating,phoneNumber,deliveryTime}
+        if(restaurantEditData?.uuid){
+            await axios.put(
+                `http://localhost:5000/api/restaurant/${restaurantEditData?.uuid}`,{...data})
+            .then(()=>{
+                setSuccess(true)
+                console.log('updated')
+            })
+            .catch(function (error) {
+               console.log(error) 
+            });
+        }
+        else{
+            await axios.post("http://localhost:5000/api/restaurant/",data)
+            .then((data)=>{
+                console.log("submitted successfully")
+                setSuccess(true)
+            })
+        }
+    }
+    if(success){
+        router.push("/restaurant")
     }
     
     return (
@@ -37,11 +59,14 @@ const CreateRestaurantForm = () => {
                     <div className='flex justify-between gap-x-2'>
                         <div className='flex flex-col gap-y-2 w-full'>
                             <label htmlFor="" className='text-black'>Logo</label>
-                            <input type="file" value={logo} onChange={(e)=>setLogo(e.target.value)} className='h-40 w-full  border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
+                            <input type="text" value={logo} onChange={(e)=>setLogo(e.target.value)} className='h-40 w-full  border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
                         </div>
+
+
+                        
                         <div className='flex flex-col gap-y-2 w-full'>
                             <label htmlFor="" className='text-black'>Restaurant Image</label>
-                            <input type="file" value={image} onChange={(e)=>setImage(e.target.value)} className='h-40 border-2   w-full  bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
+                            <input type="text" value={image} onChange={(e)=>setImage(e.target.value)} className='h-40 border-2   w-full  bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
                         </div>
                     </div>
                         {/* longitude and latitude */}

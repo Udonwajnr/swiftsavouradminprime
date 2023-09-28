@@ -1,32 +1,31 @@
 import React from 'react'
-
-const CategoryTable = () => {
+import Link from 'next/link'
+const CategoryTable = ({categoryData}) => {
   return (
     <div className="lg:overflow-x-scroll">
             <table className="auto w-full table-fixed mt-3">
-                <thead>
+                <thead className='bg-black h-10'>
                     <tr className="xl:text-xs text-sm">
-                    <th className="border border-slate-700  lg:w-16">No.</th>
-                    <th className="border border-slate-700  lg:w-36">Episode uuid</th>
-                        <th className="border border-slate-700 lg:w-36">Title</th>
-                        <th className="border border-slate-700 lg:w-32">Year</th>
-                        <th className="border border-slate-700 text-center lg:w-32">SeasonId</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Season Title</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Genre</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Language</th>
-                        <th className="border border-slate-700 text-center lg:w-52">Description</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Image</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Poster Image</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Trailer Url</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Length Of Vide0</th>
-                        <th className="border border-slate-700 text-center lg:w-32">File Link</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Subtitle Link</th>
-                        <th className="border border-slate-700 text-center lg:w-32">Actors</th>
-                        <th className="border border-slate-700 text-center lg:w-32 ">Video Quality</th>
-                        <th className="border border-slate-700 text-center lg:w-24">Options</th>
+                    <th className="border border-slate-700 text-white  lg:w-16">UUID</th>
+                    <th className="border border-slate-700 text-white  lg:w-36">Name</th>
+                    <th className="border border-slate-700 text-white lg:w-32">Created</th>
+                    <th className="border border-slate-700 text-white lg:w-32">Options</th>
                     </tr>
                 </thead>
                 <tbody>
+                {categoryData.map((category,index)=>{
+                        return(
+                        <tr key={index} className="xl:text-xs text-sm h-10 border-2 border-r bg-[#fafafa]">
+                          <td className="  capitalize text-center">{category.uuid}</td>
+                          <td className=" text-center capitalize">{category.name}</td>                          
+                          <td className=" text-center capitalize">{category.createdAt}</td>                          
+                          <div className="flex justify-center space-x-2">
+                            <Link href={`category/edit/${category.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
+                            <Link href={`category/delete/${category.uuid}`} className="p-2 lg:p-1 bg-red-600 text-white">Delete</Link>
+                            </div>              
+                      </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>
