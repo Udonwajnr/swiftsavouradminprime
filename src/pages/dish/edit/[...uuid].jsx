@@ -6,6 +6,7 @@ import CreateDishForm from "@/components/CreateDishForm"
 
 export default function EditDish(){
     const [dishEditData,setDishEditData] = useState(null)
+    const [error,setError] = useState(false)
     const router = useRouter()
     const {uuid} = router.query
     
@@ -14,7 +15,13 @@ export default function EditDish(){
             return;
         }
          axios.get(`http://localhost:5000/api/dish/${uuid}`)
-         .then((data)=>setDishEditData(data?.data?.results?.dish?.dish))
+         .then((data)=>{
+            setError(false)
+            setDishEditData(data?.data?.results?.dish?.dish)
+        })
+         .catch((data)=>{
+            setError(true)
+        })
     },[uuid])
     console.log(dishEditData)
     return(
@@ -23,6 +30,9 @@ export default function EditDish(){
             {
                 dishEditData !== null &&
                 <CreateDishForm dishEditData={dishEditData}/>
+            }
+            {
+                error && <h1>This is Impropper</h1>
             }
         </div>
     )

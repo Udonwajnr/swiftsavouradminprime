@@ -16,8 +16,8 @@ export default function RegistrationForm(){
     const router = useRouter()
 
     const createUser =async(e)=>{
-        const data = {firstName,lastName,userName,email,phoneNumber,password,password2}
         e.preventDefault()
+        const data = {firstName,lastName,userName,email,phoneNumber,password,password2}
         await axios.post("http://localhost:5000/api/auth/register/",data)
         .then(()=>{
             console.log("Registration Successful")
@@ -25,7 +25,7 @@ export default function RegistrationForm(){
         })
     }
     if(success){
-        router.push('/register/verify/')
+        router.push(`/register/verify/${email}`)
     }
     return(
         <>

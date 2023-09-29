@@ -25,7 +25,7 @@ export default function VerificationSuccessful(){
         }
     }
 
-    //if it works don't touch it
+    // it works don't touch it
 
     useEffect(()=>{
      if(token?.length>0){
