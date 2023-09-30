@@ -23,6 +23,10 @@ export default function DeleteRestaurant(){
        await axios.delete(
         `http://localhost:5000/api/restaurant/${uuid}`
         )
+        .then((data)=>console.log("done"))
+        .catch(function (error) {
+            console.log(error) 
+         });
         setSuccess(true)
     }
     if(success){

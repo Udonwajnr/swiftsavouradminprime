@@ -14,6 +14,9 @@ export default function EditRestaurant(){
         }
          axios.get(`http://localhost:5000/api/restaurant/${uuid}`)
          .then((data)=>setRestaurantEditData(data?.data?.results?.restaurant?.restaurant))
+         .catch(function (error) {
+            console.log(error) 
+         });
     },[uuid])
     return(
         <div className="p-3">

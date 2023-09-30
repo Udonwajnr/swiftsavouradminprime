@@ -6,7 +6,11 @@ import RestaurantTable from "@/components/RestaurantTable";
 export default function Restaurant(){
     const [restaurantData,setRestaurantData] =useState([])
     const getData =async()=>{
-        await axios.get("https://swifsavorapi.onrender.com/api/restaurant/").then((data)=>setRestaurantData(data.data.results.restaurants.restaurants))
+        await axios.get("https://swifsavorapi.onrender.com/api/restaurant/")
+        .then((data)=>setRestaurantData(data.data.results.restaurants.restaurants))
+        .catch(function (error) {
+            console.log(error) 
+         });
     }
     useEffect(()=>{
         getData()

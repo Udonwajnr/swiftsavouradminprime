@@ -44,7 +44,9 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
             .then((data)=>{
                 console.log("submitted successfully")
                 setSuccess(true)
-            })
+            }).catch(function (error) {
+                console.log(error) 
+             });
         }
     }
     if(success){
