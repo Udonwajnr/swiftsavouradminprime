@@ -7,7 +7,7 @@ export default function ForgetPassword(){
    const getForgotPasswordLink =async(e)=>{
     e.preventDefault()
         const data ={email}
-       await axios.post("http://localhost:5000/api/password/forgot",data)
+       await axios.post("https://swifsavorapi.onrender.com/api/password/forgot",data)
        .then((data)=>{
         console.log(data)
        })

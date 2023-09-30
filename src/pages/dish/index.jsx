@@ -8,7 +8,7 @@ import DishTable from "@/components/DishTable"
 export default function Dish(){
     const [dishData,setDishData] =useState([])
     const getData =async()=>{
-        await axios.get("http://localhost:5000/api/dish/").then((data)=>setDishData(data?.data?.results?.dish?.dish))
+        await axios.get("https://swifsavorapi.onrender.com/api/dish/").then((data)=>setDishData(data?.data?.results?.dish?.dish))
     }
     console.log(dishData)
     useEffect(()=>{

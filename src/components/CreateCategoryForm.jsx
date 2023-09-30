@@ -16,7 +16,7 @@ const CreateCategoryForm = ({categoryEditData}) => {
         const data ={name,restaurantName}
         if(categoryEditData?.uuid){
             await axios.put(
-                `http://localhost:5000/api/category/${categoryEditData?.uuid}`,{...data})
+                `https://swifsavorapi.onrender.com/api/category/${categoryEditData?.uuid}`,{...data})
             .then(()=>{
                 setSuccess(true)
                 console.log('updated')
@@ -27,7 +27,7 @@ const CreateCategoryForm = ({categoryEditData}) => {
             });
         }
         else{
-        await axios.post("http://localhost:5000/api/category/",data)
+        await axios.post("https://swifsavorapi.onrender.com/api/category/",data)
             .then((data)=>{
                 console.log("submitted successfully")
                 setSuccess(true)

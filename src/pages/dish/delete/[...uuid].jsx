@@ -12,7 +12,7 @@ export default function DeleteDish(){
         if(!uuid){
             return;
         }
-         axios.get(`http://localhost:5000/api/dish/${uuid}`)
+         axios.get(`https://swifsavorapi.onrender.com/api/dish/${uuid}`)
          .then((data)=>setDishEditData(data?.data?.results?.dish?.dish))
     },[uuid])
 
@@ -21,7 +21,7 @@ export default function DeleteDish(){
     }
     const deleteDish=async()=>{
        await axios.delete(
-        `http://localhost:5000/api/dish/${uuid}`
+        `https://swifsavorapi.onrender.com/api/dish/${uuid}`
         )
         setSuccess(true)
     }

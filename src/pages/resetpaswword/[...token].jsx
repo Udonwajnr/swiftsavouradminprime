@@ -16,7 +16,7 @@ export default function ResetPassword(){
     const submitPassword =async(e)=>{
         e.preventDefault()
         const data  = {password,token}
-        await axios.post("http://localhost:5000/api/password/reset",data)
+        await axios.post("https://swifsavorapi.onrender.com/api/password/reset",data)
         .then((data)=>{ 
             console.log(data)
             setUpdated(true)

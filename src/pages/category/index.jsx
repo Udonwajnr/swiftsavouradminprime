@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Category(){
         const [categoryData,setCategoryData] =useState([])
         const getData =async()=>{
-            await axios.get("http://localhost:5000/api/category/").then((data)=>setCategoryData(data?.data?.results?.category?.category))
+            await axios.get("https://swifsavorapi.onrender.com/api/category/").then((data)=>setCategoryData(data?.data?.results?.category?.category))
         }
         console.log(categoryData)
         useEffect(()=>{

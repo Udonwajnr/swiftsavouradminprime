@@ -20,7 +20,7 @@ const CreateDishForm = ({dishEditData}) => {
         const data ={restaurantName,categoryName,name,description,image,price}
         if(dishEditData?.uuid){
             await axios.put(
-                `http://localhost:5000/api/dish/${dishEditData?.uuid}`,{...data})
+                `https://swifsavorapi.onrender.com/api/dish/${dishEditData?.uuid}`,{...data})
             .then(()=>{
                 setSuccess(true)
                 console.log('updated')
@@ -30,7 +30,7 @@ const CreateDishForm = ({dishEditData}) => {
             });
         }
         else{
-            axios.post("http://localhost:5000/api/dish/",data)
+            axios.post("https://swifsavorapi.onrender.com/api/dish/",data)
             .then((data)=>{
            
                 console.log("submitted successfully")

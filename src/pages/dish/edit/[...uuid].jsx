@@ -14,7 +14,7 @@ export default function EditDish(){
         if(!uuid){
             return;
         }
-         axios.get(`http://localhost:5000/api/dish/${uuid}`)
+         axios.get(`https://swifsavorapi.onrender.com/api/dish/${uuid}`)
          .then((data)=>{
             setError(false)
             setDishEditData(data?.data?.results?.dish?.dish)

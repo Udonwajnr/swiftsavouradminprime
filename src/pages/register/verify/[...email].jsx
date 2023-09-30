@@ -11,7 +11,7 @@ const [error,setError] = useState(true)
 console.log(email)
 const getVerificationLinkAgain =async()=>{
     const data ={email}
-    await axios.post("http://localhost:5000/api/auth/verify/resend",data)
+    await axios.post("https://swifsavorapi.onrender.com/api/auth/verify/resend",data)
         .then((data)=>console.log(data))
 }
 useEffect(()=>{

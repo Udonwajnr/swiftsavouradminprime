@@ -18,7 +18,7 @@ export default function RegistrationForm(){
     const createUser =async(e)=>{
         e.preventDefault()
         const data = {firstName,lastName,userName,email,phoneNumber,password,password2}
-        await axios.post("http://localhost:5000/api/auth/register/",data)
+        await axios.post("https://swifsavorapi.onrender.com/api/auth/register/",data)
         .then(()=>{
             console.log("Registration Successful")
             setSuccess(true)

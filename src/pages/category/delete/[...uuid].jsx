@@ -12,7 +12,7 @@ export default function DeleteCategory(){
         if(!uuid){
             return;
         }
-         axios.get(`http://localhost:5000/api/category/${uuid}`)
+         axios.get(`https://swifsavorapi.onrender.com/api/category/${uuid}`)
          .then((data)=>setCategoryEditData(data?.data?.results?.category?.category))
     },[uuid])
 
@@ -21,7 +21,7 @@ export default function DeleteCategory(){
     }
     const deleteCategory=async()=>{
        await axios.delete(
-        `http://localhost:5000/api/category/${uuid}`
+        `https://swifsavorapi.onrender.com/api/category/${uuid}`
         )
         setSuccess(true)
     }

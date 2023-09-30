@@ -9,7 +9,7 @@ export default function LoginForm(){
     const loginUser =async(e)=>{
         e.preventDefault()
        const data ={email,password}
-       await axios.post("http://localhost:5000/api/auth/login/",data)
+       await axios.post("https://swifsavorapi.onrender.com/api/auth/login/",data)
        .then((data)=>{
         console.log(data)
         alert("login successful")

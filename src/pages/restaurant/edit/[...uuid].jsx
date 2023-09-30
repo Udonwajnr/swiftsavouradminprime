@@ -12,7 +12,7 @@ export default function EditRestaurant(){
         if(!uuid){
             return;
         }
-         axios.get(`http://localhost:5000/api/restaurant/${uuid}`)
+         axios.get(`https://swifsavorapi.onrender.com/api/restaurant/${uuid}`)
          .then((data)=>setRestaurantEditData(data?.data?.results?.restaurant?.restaurant))
          .catch(function (error) {
             console.log(error) 

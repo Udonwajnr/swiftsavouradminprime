@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import {CitySelect,CountrySelect,StateSelect} from "react-country-state-city"
 import "react-country-state-city/dist/react-country-state-city.css"
+
 const CreateRestaurantForm = ({restaurantEditData}) => {
     const [name,setName] = useState(restaurantEditData?.name|| "")
     const [address,setAddress] = useState(restaurantEditData?.name||"")
@@ -14,15 +15,15 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
     const [rating,setRating] = useState(restaurantEditData?.rating||"")
     const [phoneNumber,setPhoneNumber] = useState(restaurantEditData?.phoneNumber||"")
     const [deliveryTime,setDeliveryTime] = useState(restaurantEditData?.deliveryTime || "")
-    const [country, setCountryId] = useState('');
-    const [state, setState] = useState('');
-    const [city,setCity] = useState('')
+    const [country, setCountryId] = useState(restaurantEditData?.country||'');
+    const [state, setState] = useState(restaurantEditData?.state||'');
+    const [city,setCity] = useState(restaurantEditData?.city||'')
     const [countryid, setCountryid] = useState(0);
     const [stateid, setstateid] = useState(0);
     const [cityid, setcityid] = useState(0);
     const [success,setSuccess] = useState(false)
 
-    // console.log()
+    console.log(restaurantEditData.city)
     console.log(state,country,city)
     const router = useRouter()
     const createRestaurant =async(e)=>{

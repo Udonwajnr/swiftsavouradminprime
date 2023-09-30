@@ -10,7 +10,7 @@ export default function VerificationSuccessful(){
     
     const veryEmail = async()=>{
         try{
-           await axios.get(`http://localhost:5000/api/auth/verify/${token}`)
+           await axios.get(`https://swifsavorapi.onrender.com/api/auth/verify/${token}`)
                 .then((data)=>{
                 console.log(data)
                 setVerified(true)}

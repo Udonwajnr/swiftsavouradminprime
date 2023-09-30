@@ -12,7 +12,7 @@ export default function DeleteRestaurant(){
         if(!uuid){
             return;
         }
-         axios.get(`http://localhost:5000/api/restaurant/${uuid}`)
+         axios.get(`https://swifsavorapi.onrender.com/api/restaurant/${uuid}`)
          .then((data)=>setRestaurantEditData(data?.data?.results?.restaurant?.restaurant))
     },[uuid])
 
@@ -21,7 +21,7 @@ export default function DeleteRestaurant(){
     }
     const deleteRestaurant=async()=>{
        await axios.delete(
-        `http://localhost:5000/api/restaurant/${uuid}`
+        `https://swifsavorapi.onrender.com/api/restaurant/${uuid}`
         )
         .then((data)=>console.log("done"))
         .catch(function (error) {
