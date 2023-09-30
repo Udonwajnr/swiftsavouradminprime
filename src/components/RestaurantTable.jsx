@@ -15,6 +15,9 @@ const RestaurantTable = ({restaurantData}) => {
                 <th className="border border-slate-700 text-white text-center lg:w-32">Rating</th>
                 <th className="border border-slate-700 text-white text-center lg:w-32">Phone Number</th>
                 <th className="border border-slate-700 text-white text-center lg:w-52">Delivery time</th>
+                <th className="border border-slate-700 text-white text-center lg:w-52">country</th>
+                <th className="border border-slate-700 text-white text-center lg:w-52">state</th>
+                <th className="border border-slate-700 text-white text-center lg:w-52">city</th>
                 <th className="border border-slate-700 text-white text-center lg:w-52">createdAt</th>
                 <th className="border border-slate-700 text-white text-center lg:w-52">Options</th>
             </tr>
@@ -32,6 +35,9 @@ const RestaurantTable = ({restaurantData}) => {
                           <td className=" text-center capitalize">{restaurant?.rating}</td>                          
                           <td className=" text-center capitalize">{restaurant?.phoneNumber}</td>                          
                           <td className=" text-center capitalize">{restaurant?.deliveryTime}</td>                          
+                          <td className=" text-center capitalize">{restaurant?.country}</td>                          
+                          <td className=" text-center capitalize">{restaurant?.state}</td>                          
+                          <td className=" text-center capitalize">{restaurant?.city}</td>                          
                           <td className=" text-center capitalize">{restaurant?.createdAt}</td>        
                           <td className="border border-slate-700">
                             <div className="flex justify-center space-x-2">

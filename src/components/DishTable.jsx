@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import Link from 'next/link'
 const DishTable = ({dishData}) => {
   return (
-    <div className="">
+    <div className="lg:overflow-x-scroll">
             <table className="auto w-full table-fixed mt-3">
                 <thead className='bg-black h-10'> 
                     <tr className="xl:text-xs text-sm ">

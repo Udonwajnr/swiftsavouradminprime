@@ -2,6 +2,8 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import {CitySelect,CountrySelect,StateSelect} from "react-country-state-city"
+import "react-country-state-city/dist/react-country-state-city.css"
 const CreateRestaurantForm = ({restaurantEditData}) => {
     const [name,setName] = useState(restaurantEditData?.name|| "")
     const [address,setAddress] = useState(restaurantEditData?.name||"")
@@ -12,16 +14,23 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
     const [rating,setRating] = useState(restaurantEditData?.rating||"")
     const [phoneNumber,setPhoneNumber] = useState(restaurantEditData?.phoneNumber||"")
     const [deliveryTime,setDeliveryTime] = useState(restaurantEditData?.deliveryTime || "")
+    const [country, setCountryId] = useState('');
+    const [state, setState] = useState('');
+    const [city,setCity] = useState('')
+    const [countryid, setCountryid] = useState(0);
+    const [stateid, setstateid] = useState(0);
+    const [cityid, setcityid] = useState(0);
     const [success,setSuccess] = useState(false)
-    // console.log()
 
+    // console.log()
+    console.log(state,country,city)
     const router = useRouter()
     const createRestaurant =async(e)=>{
         e.preventDefault()
-        const data={name,address,logo,image,latitude,longitude,rating,phoneNumber,deliveryTime}
+        const data={name,address,logo,image,latitude,longitude,rating,phoneNumber,deliveryTime,country,state,city}
         if(restaurantEditData?.uuid){
             await axios.put(
-                `http://localhost:5000/api/restaurant/${restaurantEditData?.uuid}`,{...data})
+                `https://swifsavorapi.onrender.com/api/restaurant/${restaurantEditData?.uuid}`,{...data})
             .then(()=>{
                 setSuccess(true)
                 console.log('updated')
@@ -31,7 +40,7 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
             });
         }
         else{
-            await axios.post("http://localhost:5000/api/restaurant/",data)
+            await axios.post("https://swifsavorapi.onrender.com/api/restaurant/",data)
             .then((data)=>{
                 console.log("submitted successfully")
                 setSuccess(true)
@@ -46,7 +55,7 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
     <section>
         <main>
             <div className='mt-3'>
-                <form className='p-3' onSubmit={createRestaurant}>
+                <form className='' onSubmit={createRestaurant}>
                     <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Name</label>
                         <input type="text" placeholder='Name' value={name} onChange={(e)=>{setName(e.target.value)}} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
@@ -70,7 +79,7 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
                         </div>
                     </div>
                         {/* longitude and latitude */}
-                    <div className='flex justify-between gap-x-5'>
+                    <div className='flex justify-between gap-x-5 md:flex-col'>
                         <div className='flex flex-col gap-y-2 w-full'>
                             <label htmlFor="" className='text-black'>Latitude</label>
                             <input type="text" value={latitude} onChange={(e)=>setLatitude(e.target.value)} placeholder='Latitude' className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
@@ -93,7 +102,26 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
                         <label htmlFor="" className='text-black'>Delivery Time</label>
                         <input type="text" placeholder='0min' value={deliveryTime} onChange={(e)=>setDeliveryTime(e.target.value)} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
                     </div>
-
+                   {/* country */}
+                    <div>
+                        <label htmlFor="">Country</label>
+                         <CountrySelect onChange={(e) => { setCountryid(e.id)
+                            setCountryId(e.name)
+                        }} placeHolder="Select Country"/>
+                    </div>
+                    <div>
+                        <label htmlFor="">State</label>
+                         <StateSelect  countryid={countryid} onChange={(e) => {
+                            console.log(e)
+                            setstateid(e.id)
+                            setState(e.name);}} placeHolder="Select State"/>
+                    </div>
+                    <div>
+                        <label htmlFor="">City</label>
+                        <CitySelect countryid={countryid} stateid={stateid} onChange={(e) => { 
+                            setCity(e.name)
+                             }} placeHolder="Select City"/>
+                    </div>
                     <div className='flex flex-col mt-5'>
                         <button type='submit' className='bg-black text-center w-full h-10 text-white'>Publish</button>
                     </div>

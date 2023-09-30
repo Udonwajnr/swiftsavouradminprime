@@ -16,7 +16,7 @@ export default function EditRestaurant(){
          .then((data)=>setRestaurantEditData(data?.data?.results?.restaurant?.restaurant))
     },[uuid])
     return(
-        <div>
+        <div className="p-3">
             <h1>Edit Restaurant</h1>
             {
                 restaurantEditData !== null &&

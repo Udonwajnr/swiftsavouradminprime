@@ -2,13 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 const Navbar = () => {
   return (
-    <header className='bg-black p-3'>
+    <header className='bg-black md:p-1 p-3'>
         <nav className='flex justify-between items-center'>
             <div>
-                <Link href={"/"} className=' text-white text-3xl'>SwiftSavourAdmin</Link>
+                <Link href={"/"} className=' text-white text-3xl md:text-lg'>SwiftSavourAdmin</Link>
             </div>
             <div className=''>
-                <ul className='flex gap-x-3'>
+                <ul className='flex gap-x-3 md:text-xs'>
                     <li className=''>
                         <Link href={"/restaurant"} className=' text-white'>Restaurant</Link>
                     </li>
