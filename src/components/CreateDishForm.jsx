@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import useSWR from 'swr'
+
+const fetcher = (url) => axios.get(url).then((res) =>res);
 
 const CreateDishForm = ({dishEditData,uuid}) => {
     const [restaurantName,setRestaurantName] = useState(dishEditData?.restaurant?.name||"")
@@ -21,7 +24,11 @@ const CreateDishForm = ({dishEditData,uuid}) => {
     const router = useRouter()
     const restaurantUuid = router.query.uuid
     
-    
+    const { data, error, isLoading } = useSWR(
+        `https://swifsavorapi.onrender.com/api/restaurant/${restaurantUuid}`,
+        fetcher
+      );
+    console.log(isLoading)
     const createDish = async(e)=>{
         e.preventDefault()
         const data ={restaurantName,categoryName,name,description,image,price}
@@ -53,22 +60,16 @@ const CreateDishForm = ({dishEditData,uuid}) => {
     }
 
     useEffect(()=>{
-        axios.get(`https://swifsavorapi.onrender.com/api/restaurant/${restaurantUuid}`)
-         .then((data)=>{
-            setLoading(true)
-            console.log(data)
-            setRestaurantName(data?.data?.results?.restaurant?.restaurant.name)
-            setRestaurant(data?.data?.results?.restaurant?.restaurant)
-            // setCategory(data?.data?.results?.restaurants?.restaurants.category)
-        })
-            .catch((error)=>{
-                console.log(error)
-                setLoading(false)
-            })
+        if(restaurantUuid){
+                 setRestaurantName(data?.data?.results?.restaurant?.restaurant?.name)
+                 setRestaurant(data?.data?.results?.restaurant?.restaurant)
+                 setLoading(true)
+                // setCategory(data?.data?.results?.restaurants?.restaurants.category)
+        }
     },[restaurantUuid])
 
-    // console.log(dishEditData.restaurant.category)
-    // console.log(restaurant)
+    console.log(data)
+    
   return (
     <section>
         <main>
@@ -124,13 +125,13 @@ const CreateDishForm = ({dishEditData,uuid}) => {
                     <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Category Name</label>
 
-                        <select value={categoryName} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' v name="" id="" onChange={(e)=>setCategoryName(e.target.value)}>
+                        <select value={categoryName} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' name="" id="" onChange={(e)=>setCategoryName(e.target.value)}>
                             {
-                                !dishEditData?.uuid&&
+                                dishEditData?.uuid !== null&&
                             <option className='' value=""></option>  
                             }
                             {
-                                !dishEditData?.uuid&&
+                                dishEditData?.uuid !== null&&
                               restaurant?.category?.map((category,index)=>{
                                 return(
                                     <option key={index} className='' value={category.name}>{category.name}</option>
@@ -138,7 +139,7 @@ const CreateDishForm = ({dishEditData,uuid}) => {
                               }) 
                             }
                             {
-                                dishEditData?.uuid&&
+                                dishEditData?.uuid &&
                                 dishEditData?.restaurant?.category.map((category,index)=>{
                                   return(
                                       <option key={index} className='' value={category.name}>{category.name}</option>

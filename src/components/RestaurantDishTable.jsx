@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 const RestaurantDishTable = ({restaurantData}) => {
-    console.log(restaurantData)
     return (
         <div className="lg:overflow-x-scroll">
         <table className="auto w-full table-fixed mt-3">

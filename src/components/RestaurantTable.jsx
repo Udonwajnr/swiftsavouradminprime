@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+
 const RestaurantTable = ({restaurantData}) => {
   return (
     <div className="lg:overflow-x-scroll">
