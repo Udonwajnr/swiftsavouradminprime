@@ -25,8 +25,13 @@ const RestaurantTable = ({restaurantData}) => {
         <tbody>
         {restaurantData.map((restaurant,index)=>{
                         return(
-                        <tr key={index} className="xl:text-xs text-sm h-10 border-2 border-r bg-[#fafafa]">
-                          <td className="  capitalize text-center">{restaurant?.name}</td>
+                         <tr key={index} className="xl:text-xs text-sm h-10 border-2 border-r bg-[#fafafa]">
+                          <td className="  capitalize text-center">
+                            <Link href={`restaurant/details/${restaurant?.uuid}`}>
+                              {restaurant?.name}
+                            </Link>
+                            
+                            </td>
                           <td className=" capitalize text-center">{restaurant?.address.length > 12 ? restaurant.address.slice(0,50)+"...": restaurant.address}</td>
                           <td className=" text-center capitalize">{restaurant?.logo.length > 12 ? restaurant.logo.slice(0,50)+"...": restaurant.logo}</td>
                           <td className=" text-center capitalize">{restaurant?.image.length > 12 ? restaurant.image .slice(0,50)+"...": restaurant.image }</td>                          
@@ -38,7 +43,8 @@ const RestaurantTable = ({restaurantData}) => {
                           <td className=" text-center capitalize">{restaurant?.country}</td>                          
                           <td className=" text-center capitalize">{restaurant?.state}</td>                          
                           <td className=" text-center capitalize">{restaurant?.city}</td>                          
-                          <td className=" text-center capitalize">{restaurant?.createdAt}</td>        
+                          <td className=" text-center capitalize">{restaurant?.createdAt}</td>
+                                  
                           <td className="border border-slate-700">
                             <div className="flex justify-center space-x-2">
                             <Link href={`restaurant/edit/${restaurant.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
@@ -46,6 +52,7 @@ const RestaurantTable = ({restaurantData}) => {
                             </div>
                         </td>                  
                       </tr>
+                          
                         )
                     })}
         </tbody>

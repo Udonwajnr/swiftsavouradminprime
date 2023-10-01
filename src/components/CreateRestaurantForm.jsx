@@ -23,7 +23,6 @@ const CreateRestaurantForm = ({restaurantEditData}) => {
     const [cityid, setcityid] = useState(0);
     const [success,setSuccess] = useState(false)
 
-    console.log(restaurantEditData.city)
     console.log(state,country,city)
     const router = useRouter()
     const createRestaurant =async(e)=>{

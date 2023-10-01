@@ -8,7 +8,7 @@ export default function Category(){
         const getData =async()=>{
             await axios.get("https://swifsavorapi.onrender.com/api/category/").then((data)=>setCategoryData(data?.data?.results?.category?.category))
         }
-        console.log(categoryData)
+        // console.log(categoryData)
         useEffect(()=>{
             getData()
         },[])

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
@@ -10,6 +10,8 @@ const CreateDishForm = ({dishEditData}) => {
     const [image,setImage] = useState(dishEditData?.image || "")
     const [price,setPrice] = useState(dishEditData?.price || "")
     const [categoryName,setCategoryName] = useState(dishEditData?.category?.name || "")
+    const [restaurant,setRestaurant] = useState([])
+    const [category,setCategory] = useState([])
     const [success,setSuccess] = useState(false)
 
     // change uuid to name in the data base
@@ -41,15 +43,43 @@ const CreateDishForm = ({dishEditData}) => {
     if(success){
         router.push("/dish")
     }
+    useEffect(()=>{
+        axios.get("https://swifsavorapi.onrender.com/api/restaurant/")
+         .then((data)=>setRestaurant(data.data.results.restaurants.restaurants))
+
+         axios.get("https://swifsavorapi.onrender.com/api/category/")
+         .then((data)=>setCategory(data.data.results.category.category))
+    },[])
+
   return (
     <section>
         <main>
             <div className='mt-3'>
                 <form className='p-3' onSubmit={createDish}>
-                <div className='flex flex-col gap-y-2'>
+                {/* <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Restaurant Name</label>
                         <input type="text" placeholder='Restaurant Name' value={restaurantName} onChange={(e)=>setRestaurantName(e.target.value)} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
+                    </div> */}
+
+                    <div className='flex flex-col gap-y-2'>
+                        <label htmlFor="" className='text-black'>Restaurant Name</label>
+
+                        <select className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' name="" id="" onChange={(e)=>{setRestaurantName(e.target.value)}}>
+                            {
+                                !dishEditData?.uuid&&
+                            <option className='' value=""></option>  
+                            }
+                            {
+                                restaurant.map((restaurant)=>{
+                                    return(
+                                        <option className='' value={restaurant.name}>{restaurant.name}</option>
+                                    )
+                                })
+                            }
+                        </select>
                     </div>
+
+                    
                     
                     <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Name</label>
@@ -70,9 +100,41 @@ const CreateDishForm = ({dishEditData}) => {
                         <label htmlFor="" className='text-black'>Price</label>
                         <input type="number" placeholder='0.00' value={price} onChange={(e)=>{setPrice(e.target.value)}} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
                     </div>
-                    <div className='flex flex-col gap-y-2'>
+                    {/* <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Category Name</label>
                         <input type="text" placeholder='Category Name' value={categoryName} onChange={(e)=>setCategoryName(e.target.value)} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
+                    </div> */}
+                    
+                    <div className='flex flex-col gap-y-2'>
+                        <label htmlFor="" className='text-black'>Category Name</label>
+
+                        <select className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' name="" id="" onChange={(e)=>setCategoryName(e.target.value)}>
+                            {
+                                !dishEditData?.uuid&&
+                            <option className='' value=""></option>  
+                            }
+                            {
+                              restaurant.map((restaurant)=>{
+                                return(
+                                        <>
+                                            {
+                                                restaurant.category.map((category)=>{
+                                                    return(
+                                                 <option className='' value={category.name}>{category.name}</option>
+
+                                                    )
+                                                })
+                                            }
+                                        </>
+                                )
+                              }) 
+                            //    category.map((category)=>{
+                            //         return(
+                            //             <option className='' value={category.name}>{category.name}</option>
+                            //         )
+                            //     })
+                            }
+                        </select>
                     </div>
                     <div className='flex flex-col mt-5'>
                         <button type='submit' className='bg-black text-center w-full h-10 text-white'>Publish</button>
