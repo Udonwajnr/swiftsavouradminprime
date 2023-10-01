@@ -67,8 +67,8 @@ const CreateDishForm = ({dishEditData,uuid}) => {
             })
     },[restaurantUuid])
 
-    console.log(restaurant)
-    
+    // console.log(dishEditData.restaurant.category)
+    // console.log(restaurant)
   return (
     <section>
         <main>
@@ -124,22 +124,26 @@ const CreateDishForm = ({dishEditData,uuid}) => {
                     <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Category Name</label>
 
-                        <select className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' name="" id="" onChange={(e)=>setCategoryName(e.target.value)}>
+                        <select value={categoryName} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' v name="" id="" onChange={(e)=>setCategoryName(e.target.value)}>
                             {
                                 !dishEditData?.uuid&&
                             <option className='' value=""></option>  
                             }
                             {
+                                !dishEditData?.uuid&&
                               restaurant?.category?.map((category,index)=>{
                                 return(
-                                                 <option key={index} className='' value={category.name}>{category.name}</option>
+                                    <option key={index} className='' value={category.name}>{category.name}</option>
                                 )
                               }) 
-                            //    category.map((category)=>{
-                            //         return(
-                            //             <option className='' value={category.name}>{category.name}</option>
-                            //         )
-                            //     })
+                            }
+                            {
+                                dishEditData?.uuid&&
+                                dishEditData?.restaurant?.category.map((category,index)=>{
+                                  return(
+                                      <option key={index} className='' value={category.name}>{category.name}</option>
+                                  )
+                                })
                             }
                         </select>
                     </div>
