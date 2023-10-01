@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 const RestaurantCategoryTable = ({restaurantData}) => {
+    
   return (
     <div className="lg:overflow-x-scroll">
             <table className="auto w-full table-fixed mt-3">

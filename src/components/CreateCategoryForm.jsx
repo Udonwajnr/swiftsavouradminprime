@@ -10,10 +10,8 @@ const CreateCategoryForm = ({categoryEditData,uuid}) => {
     const [success,setSuccess] = useState(false)
     const [loading,setLoading] = useState(false)
     
-    // console.log(categoryEditData?.restaurant?.name)
     const router = useRouter()
     const restaurantUuid  = router.query.uuid
-    // console.log(categoryEditData?.uuid)
     const createCategory=async(e)=>{
         e.preventDefault()
         const data ={name,restaurantName}
@@ -43,7 +41,7 @@ const CreateCategoryForm = ({categoryEditData,uuid}) => {
         }
     }
     if(success){
-        router.push(`/restaurant/details/${uuid}`)
+        router.push(`/restaurant/details/category/${uuid}`)
     }
     // console.log(categoryEditData.restaurant.uuid)
     if(updated){
@@ -63,11 +61,10 @@ const CreateCategoryForm = ({categoryEditData,uuid}) => {
             .catch((error)=>{
                 console.log(error)
                 setLoading(false)
-            
             })
         }
     },[restaurantUuid])
-    console.log(console.log(restaurantName))
+    
     return (
     <section>
         <main>
@@ -81,24 +78,7 @@ const CreateCategoryForm = ({categoryEditData,uuid}) => {
                         <label htmlFor="" className='text-black'>Restaurant Name</label>
                         <input type="text" placeholder='Restaurant Name'value={restaurantName} onChange={(e)=>{setRestaurantName(e.target.value)}} className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>
                     </div> */}
-                    {/* <div className='flex flex-col gap-y-2'>
-                        <label htmlFor="" className='text-black'>Restaurant Name</label>
-
-                        <select className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none' name="" id="" onChange={(e)=>{setRestaurantName(e.target.value)}}>
-                            {
-                                !categoryEditData?.uuid&&
-                            <option className='' value=""></option>  
-                            }
-                            {
-                                restaurant.map((restaurant)=>{
-                                    return(
-                                        <option className='' value={restaurant.name}>{restaurant.name}</option>
-                                    )
-                                })
-                            }
-
-                        </select>
-                    </div>        */}
+                   
                       <div className='flex flex-col gap-y-2'>
                         <label htmlFor="" className='text-black'>Restaurant Name</label>
                         <input type="text" placeholder='Restaurant Name'value={restaurantName} disabled className='h-10 border-2 bg-[#fafafa] border-[#f1f1f3] text-black focus:outline-none'/>

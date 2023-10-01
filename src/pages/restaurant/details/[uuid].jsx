@@ -22,7 +22,7 @@ export default function RestaurantDetails(){
         <div className="p-3">
             <h1>Details</h1>
             <div className='flex justify gap-x-3'>
-                     <Link href={`/restaurant/dish/${uuid}` } className="bg-black text-center w-full  text-white">View Dish table</Link>
+                     <Link href={`/restaurant/details/dish/${uuid}` } className="bg-black text-center w-full  text-white">View Dish table</Link>
                      <Link href={`/restaurant/details/category/${uuid}` } className="bg-black text-center w-full  text-white">View Category table</Link>
             </div>
         </div>
