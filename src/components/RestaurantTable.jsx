@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 const RestaurantTable = ({restaurantData}) => {
   return (
-    <div className="lg:overflow-x-scroll">
-    <table className="auto w-full table-fixed mt-3">
+    <div className="xl:overflow-x-scroll">
+    <table className="auto w-full table  mt-3">
         <thead className='h-10 bg-black'>
             <tr className="xl:text-xs text-sm">
             <th className="border border-slate-700 text-white lg:w-16">Name</th>
@@ -48,8 +48,9 @@ const RestaurantTable = ({restaurantData}) => {
                                   
                           <td className="border border-slate-700">
                             <div className="flex justify-center space-x-2">
-                            <Link href={`restaurant/edit/${restaurant.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
-                            <Link href={`restaurant/delete/${restaurant.uuid}`} className="p-2 lg:p-1 bg-red-600 text-white">Delete</Link>
+                           
+                            <Link href={`restaurant/edit/${restaurant.uuid}`} className="p-1 lg:p-1  bg-blue-600 text-white">Edit</Link>
+                            <Link href={`restaurant/delete/${restaurant.uuid}`} className="p-1 lg:p-1 bg-red-600 text-white">Delete</Link>
                             </div>
                         </td>                  
                       </tr>

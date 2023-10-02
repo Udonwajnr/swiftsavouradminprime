@@ -12,7 +12,7 @@ export default function EditCategory(){
         if(!uuid){
             return;
         }
-         axios.get(`https://swifsavorapi.onrender.com/api/category/${uuid}`)
+         axios.get(`https://swifsavorapi.onrender.com/api/category/`+uuid)
          .then((data)=>setCategoryEditData(data?.data?.results?.category?.category))
     },[uuid])
     console.log(categoryEditData)

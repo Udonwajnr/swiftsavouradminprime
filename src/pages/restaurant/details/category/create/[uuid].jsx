@@ -10,19 +10,19 @@ export default function CreateCategory(){
     const {uuid} = router.query
     const [loading,setLoading] = useState(false)
     useEffect(()=>{
-        if(!uuid){
-            console.log("wrong uuid")
-        }
-         axios.get(`https://swifsavorapi.onrender.com/api/restaurant/${uuid}`)
+        if(!uuid)return ;
+
+         axios.get(`https://swifsavorapi.onrender.com/api/restaurant/`+uuid)
          .then((data)=>{
             setLoading(true)
             setRestaurantEditData(data?.data?.results?.restaurant?.restaurant)
         })
          .catch(function (error) {
           setLoading(false) 
+          console.log(error)
          });
     },[uuid])
-    console.log(restaurantEditData)
+
     return(
         <main className="bg-white">
         <div>

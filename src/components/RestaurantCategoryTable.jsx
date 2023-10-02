@@ -20,10 +20,12 @@ const RestaurantCategoryTable = ({restaurantData}) => {
                           <td className="  capitalize text-center">{category?.uuid}</td>
                           <td className=" text-center capitalize">{category?.name}</td>                          
                           <td className=" text-center capitalize">{category?.createdAt}</td>                            
-                          <div className="flex justify-center space-x-2">
-                            <Link href={`edit/${category.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
-                            <Link href={`delete/${category.uuid}`} className="p-2 lg:p-1 bg-red-600 text-white">Delete</Link>
-                            </div>              
+                          <td>
+                            <div className="flex justify-center space-x-2">
+                              <Link href={`edit/${category.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
+                              <Link href={`delete/${category.uuid}`} className="p-2 lg:p-1 bg-red-600 text-white">Delete</Link>
+                              </div>              
+                          </td>
                       </tr>
                         )
                     })}

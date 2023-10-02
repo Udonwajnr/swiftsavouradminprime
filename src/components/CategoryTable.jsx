@@ -20,11 +20,13 @@ const CategoryTable = ({categoryData}) => {
                           <td className="  capitalize text-center">{category.uuid}</td>
                           <td className=" text-center capitalize">{category.name}</td>                          
                           <td className=" text-center capitalize">{category.restaurant.name}</td>                        
-                          <td className=" text-center capitalize">{category.createdAt}</td>                            
-                          <div className="flex justify-center space-x-2">
-                            <Link href={`category/edit/${category.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
-                            <Link href={`category/delete/${category.uuid}`} className="p-2 lg:p-1 bg-red-600 text-white">Delete</Link>
+                          <td className=" text-center capitalize">{category.createdAt}</td>      
+                          <td>
+                            <div className="flex justify-center space-x-2">
+                              <Link href={`category/edit/${category.uuid}`} className="p-2 lg:p-1  bg-blue-600 text-white">Edit</Link>
+                              <Link href={`category/delete/${category.uuid}`} className="p-2 lg:p-1 bg-red-600 text-white">Delete</Link>
                             </div>              
+                          </td>                      
                       </tr>
                         )
                     })}

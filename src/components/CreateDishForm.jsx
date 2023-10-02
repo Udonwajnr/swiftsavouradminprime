@@ -25,10 +25,9 @@ const CreateDishForm = ({dishEditData,uuid}) => {
     const restaurantUuid = router.query.uuid
     
     const { data, error, isLoading } = useSWR(
-        `https://swifsavorapi.onrender.com/api/restaurant/${restaurantUuid}`,
+        `https://swifsavorapi.onrender.com/api/restaurant/`,
         fetcher
       );
-    console.log(isLoading)
     const createDish = async(e)=>{
         e.preventDefault()
         const data ={restaurantName,categoryName,name,description,image,price}
@@ -60,16 +59,16 @@ const CreateDishForm = ({dishEditData,uuid}) => {
     }
 
     useEffect(()=>{
-        if(restaurantUuid){
-                 setRestaurantName(data?.data?.results?.restaurant?.restaurant?.name)
-                 setRestaurant(data?.data?.results?.restaurant?.restaurant)
-                 setLoading(true)
-                // setCategory(data?.data?.results?.restaurants?.restaurants.category)
-        }
-    },[restaurantUuid])
+        if(restaurantUuid)return;
+           axios.get("https://swifsavorapi.onrender.com/api/restaurant/")
+           .then(data=>console.log(data))
+           .catch((error)=>console.log(error))
 
-    console.log(data)
-    
+        //   setRestaurantName(data?.data?.results?.restaurant?.restaurant?.name)
+        //          setRestaurant(data?.data?.results?.restaurant?.restaurant)
+        //          setLoading(true)
+    },[restaurantUuid])
+        
   return (
     <section>
         <main>
